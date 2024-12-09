@@ -63,7 +63,7 @@ The maximum value of the histogram was determined for all three channels of the 
 ### 2.7 3D Color Graph
 A dataset was generated with dominant colors obtained using KMeans clustering in LAB space. These colors are displayed on an interactive 3D graph.
 
-![image](https://github.com/user-attachments/assets/7b8fd434-1fe9-4ab3-99b8-899f6ee95d0a)\
+<img src="https://github.com/user-attachments/assets/7b8fd434-1fe9-4ab3-99b8-899f6ee95d0a" width=40%>\
 *Figure 9: 3D graph of dominant colors.*
 
 ### 2.8 2D Color Graphs
