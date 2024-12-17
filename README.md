@@ -27,7 +27,7 @@ The average entropy and its standard deviation were calculated. The average entr
 
 ### 2.3 Cumulative Distribution Function (CDF)
 A graph of the cumulative distribution was drawn for several images from the data set and its average values ​​for the first three quantiles, as well as their standard deviations, were calculated. The contrast of the dynamic range as well as the skewness of this function were also calculated. The average for the first quantile is around 0.21, the second around 0.54, and the third around 0.79. The average contrast of the dynamic range is about 0.99, and the distortion is about 0.09.
-![image](https://github.com/user-attachments/assets/b068c8e0-5c7d-413c-bf31-14b0b7f32be1)
+<img src="https://github.com/user-attachments/assets/b068c8e0-5c7d-413c-bf31-14b0b7f32be1" width=70%>\
 *Figure 1: An example of cumulative image distribution function.*
 
 ### 2.4 Mean and Median Colors
@@ -63,7 +63,7 @@ The maximum value of the histogram was determined for all three channels of the 
 ### 2.7 3D Color Graph
 A dataset was generated with dominant colors obtained using KMeans clustering in LAB space. These colors are displayed on an interactive 3D graph.
 
-![image](https://github.com/user-attachments/assets/7b8fd434-1fe9-4ab3-99b8-899f6ee95d0a)\
+<img src="https://github.com/user-attachments/assets/7b8fd434-1fe9-4ab3-99b8-899f6ee95d0a" width=40%>\
 *Figure 9: 3D graph of dominant colors.*
 
 ### 2.8 2D Color Graphs
@@ -97,6 +97,25 @@ The proposed solution to this problem is a convolutional neural network (CNN) tr
 
 
 ## 6. Experiments
+### 6.1 Basic CNN
+Basic CNN architecture was created in order to establish a baseline. It consists of two Convolutional layers, first with 5x5 and the second with 3x3 filters. Each of these layers was followed by ReLU activation function and MaxPool. Two fully connected layers were added, the first one with ReLU activation and the second one with Linear for generating the output color. The model was trained with Adam optimizer and learning rate of 0.001. It resulted with MAE of 0.1387 and MSE of 0.0320 on the test dataset.
+
+<img src="https://github.com/user-attachments/assets/b0c1fab3-6eee-4931-a5f1-77c890ddd1c2" width=50%>\
+*Figure 13: Validation MAE of Basic CNN over time.*
+
+### 6.2 ResNet18
+ResNet18 architecture was modified so that it outputs a color instead of probabilities of classes. This time, sigmoid function is introduced in the output. The default weights for ResNet were used to ensure the most recent ResNet weight improvements are used and the layers up to the second residual block were frozen. The model resulted with MAE of 0.1262 and MSE of 0.0284 on the test set.
+
+<img src="https://github.com/user-attachments/assets/b1cee6ec-7991-4cc0-a7da-265f6206118b" width=50%>\
+*Figure 14: Validation MAE of ResNet18 over time.*
+
+### 6.3 ResNet18 with additional layers
+A new Convolutional layer was added on top of the residual blocks of the ResNet. It has a 7x7 filter, padding of 3 and stride of 2 with the idea to look at the bigger part of the image and draw better conclusions about the dominant colors. Also, another fully connected layer was added and dropouts were introduced accordingly. This modification resulted with MAE of 0.1117 and MSE of 0.0249 on the test dataset.
+<img src="https://github.com/user-attachments/assets/c7d6428a-52eb-4234-8ac8-302fbe803f09" width=50%>\
+*Figure 15: Validation MAE of ResNet18 with additional layers over time.*
+
+
+### 6.4 Resnet18 with more additional layers and weight decay
 
 
 ## 7. Conclusions
