@@ -111,28 +111,27 @@ ResNet18 architecture was modified so that it outputs a color instead of probabi
 *Figure 14: Validation MAE of ResNet18 over time.*
 
 ### 6.3 ResNet18 with one Squeeze-and-Excitation block
-A new Convolutional layer was added on top of the residual blocks of the ResNet. It has a 7x7 filter, padding of 3 and stride of 2 with the idea to look at the bigger part of the image and draw better conclusions about the dominant colors. Also, another fully connected layer was added and dropouts were introduced accordingly. This modification resulted with MAE of 0.1067 and MSE of 0.0237 on the test dataset.
+This modification resulted with MAE of 0.1067 and MSE of 0.0237 on the test dataset.
 
 <img src="https://github.com/user-attachments/assets/8309520a-7c2b-4cb3-8de8-2b6031e87d98" width=50%>\
-*Figure 15: ...*
+*Figure 15: Validation MAE of ResNet18 with a single Squeeze-and-Excitation block over time.*
 
-
-### 6.4 Resnet18 with two Squeeze-and-Excitation blocks and Dropout
+### 6.4 Resnet18 with two Squeeze-and-Excitation blocks and dropout
 
 <img src="https://github.com/user-attachments/assets/4654fc86-1a85-4b88-8118-8dd658e31ac0" width=50%>\
-*Figure 16: ...*
+*Figure 16: Validation MAE of ResNet18 with two Squeeze-and-Excitation blocks and dropout over time.*
 
-### 6.5 Training the entire 6.4 model with AdamW and learning rate reduction
+### 6.5 Training the entire (unfrozen) Resnet18 with two Squeeze-and-Excitation blocks and dropout model with AdamW optimizer and learning rate reduction
 
-<img src="https://github.com/user-attachments/assets/67d1efbe-7924-4567-883d-c421d0e18e1d" width=50%>\
-*Figure 17: Validation MAE of the final trained model over time.*
+<img src="https://github.com/user-attachments/assets/164d5bec-4830-4a27-96da-749a0e0e1c8a" width=50%>\
+*Figure 17: Validation MAE of the final trained model over time on the logarithmic scale.*
 
 ## 7. Error Analysis
 <img src="https://github.com/user-attachments/assets/f850f579-9c2f-4f7b-b081-1b07bded829e" width=50%>\
-*Figure 18: ...*
+*Figure 18: Example of an error on an image containing multiple prominent colors.*
 
 <img src="https://github.com/user-attachments/assets/8d2c76d6-6cd8-4baa-81b0-eaec24a89f59" width=50%>\
-*Figure 19: ...*
+*Figure 19: Example of an error on an image conatining two dominant colors.*
 
 ## 8. Conclusions
 
@@ -143,3 +142,4 @@ A new Convolutional layer was added on top of the residual blocks of the ResNet.
 4. [A Complete Guide to Picture Complexity Assessment Using Entropy by unimatrixz.com](https://unimatrixz.com/blog/latent-space-image-quality-with-entropy/)
 5. [Image Enhancement with Python by Sandaruwan Herath](https://medium.com/image-processing-with-python/image-enhancement-with-python-d3040a39e394)
 6. [Deep Residual Learning for Image Recognition by Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun](https://arxiv.org/abs/1512.03385)
+7. [Squeeze-and-Excitation Networks by Jie Hu, Li Shen, Samuel Albanie, Gang Sun, Enhua Wu](https://arxiv.org/abs/1709.01507)
