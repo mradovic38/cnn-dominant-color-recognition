@@ -97,7 +97,8 @@ The proposed solution to this problem is a convolutional neural network (CNN) tr
     Average value of squared difference across three channels. More sensitive to large model errors.
 
 ## 5. Model Architecture
-
+<img src="https://github.com/user-attachments/assets/8356dc32-9771-4154-8b0b-79d077178add" width=25%>\
+*Figure 13: Final model architecture.*
 
 ## 6. Experiments
 ### 6.1 Basic CNN
