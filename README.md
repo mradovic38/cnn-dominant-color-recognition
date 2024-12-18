@@ -28,48 +28,50 @@ The average entropy and its standard deviation were calculated. The average entr
 
 ### 2.3 Cumulative Distribution Function (CDF)
 A graph of the cumulative distribution was drawn for several images from the data set and its average values ​​for the first three quantiles, as well as their standard deviations, were calculated. The contrast of the dynamic range as well as the skewness of this function were also calculated. The average for the first quantile is around 0.21, the second around 0.54, and the third around 0.79. The average contrast of the dynamic range is about 0.99, and the distortion is about 0.09.
-<img src="https://github.com/user-attachments/assets/b068c8e0-5c7d-413c-bf31-14b0b7f32be1" width=70%>\
+
+<img src="https://github.com/user-attachments/assets/b068c8e0-5c7d-413c-bf31-14b0b7f32be1" width=40%>\
 *Figure 1: An example of cumulative image distribution function.*
 
 ### 2.4 Mean and Median Colors
 The mean and median were calculated for the three image channels. The three mean values ​​obtained in this way are combined into a color that could represent the dominant one. The process was repeated for three different color spaces: RGB, HSV and LAB.
 
-![image](https://github.com/user-attachments/assets/80347b2b-2e72-418e-9c4f-4cf85dec14f0)
+<img src="https://github.com/user-attachments/assets/80347b2b-2e72-418e-9c4f-4cf85dec14f0" width=60%>\
 *Figure 2: Mean and median colors in RGB space.*
 
-![image](https://github.com/user-attachments/assets/32f72f03-ee3d-42ba-88aa-61a662209f98)
+<img src="https://github.com/user-attachments/assets/32f72f03-ee3d-42ba-88aa-61a662209f98" width=60%>\
 *Figure 3: Mean and median colors in HSV space.*
 
-![image](https://github.com/user-attachments/assets/a9c1f5eb-58c3-4900-b57f-a56edfa454d6)
+<img src="https://github.com/user-attachments/assets/a9c1f5eb-58c3-4900-b57f-a56edfa454d6" width=60%>\
 *Figure 4: Mean and median colors in LAB space.*
 
 ### 2.5 KMeans Clustering
 KMeans clustering with 5 clusters was performed in order to detect the dominant color. First, the image was reduced 10 times to speed up the calculation, and after clustering, the cluster with the most pixels was selected. The process was repeated for RGB, HSV and LAB space. The number of clusters was determined empirically.
 
-![image](https://github.com/user-attachments/assets/06611c19-3811-4873-a45c-19b0eb3c0641)
+<img src="https://github.com/user-attachments/assets/06611c19-3811-4873-a45c-19b0eb3c0641" width=60%>\
 *Figure 5: Clustering in RGB space. Visualization of the dominant cluster.*
 
-![image](https://github.com/user-attachments/assets/47b9a156-612c-4176-999e-68a01d5b4669)
+<img src="https://github.com/user-attachments/assets/47b9a156-612c-4176-999e-68a01d5b4669" width=60%>\
 *Figure 6: Clustering in RGB space. Visualization of the dominant cluster.*
 
-![image](https://github.com/user-attachments/assets/1182a28f-c62b-4a1d-899c-64ec80ade8bf)
+<img src="https://github.com/user-attachments/assets/1182a28f-c62b-4a1d-899c-64ec80ade8bf" width=60%>\
 *Figure 7: Clustering in RGB space. Visualization of the dominant cluster.*
 
 ### 2.6 Max HSV Histogram Value
 The maximum value of the histogram was determined for all three channels of the HSV space separately. The obtained values ​​are combined into a dominant color.
 
-![image](https://github.com/user-attachments/assets/17bc34bd-1fe7-4ac8-8003-5308a70fb2d6)
+<img src="https://github.com/user-attachments/assets/17bc34bd-1fe7-4ac8-8003-5308a70fb2d6" width=60%>\
 *Figure 8: The maximum value of the HSV histogram. Visualization of the maximum value.*
 
 ### 2.7 3D Color Graph
 A dataset was generated with dominant colors obtained using KMeans clustering in LAB space. These colors are displayed on an interactive 3D graph.
 
-<img src="https://github.com/user-attachments/assets/7b8fd434-1fe9-4ab3-99b8-899f6ee95d0a" width=40%>\
+<img src="https://github.com/user-attachments/assets/7b8fd434-1fe9-4ab3-99b8-899f6ee95d0a" width=30%>\
 *Figure 9: 3D graph of dominant colors.*
 
 ### 2.8 2D Color Graphs
 2D graphs of dominant colors of all three possible combinations of R, G and B channels are shown.
-![image](https://github.com/user-attachments/assets/3642811c-242d-4518-a202-792ee63301e6)
+
+<img src="https://github.com/user-attachments/assets/3642811c-242d-4518-a202-792ee63301e6" width=80%>\
 *Figures 10, 11, 12: 2D graphs of dominant colors.*
 
 ## 3. Conclusions from Data Analysis
@@ -101,32 +103,44 @@ The proposed solution to this problem is a convolutional neural network (CNN) tr
 ### 6.1 Basic CNN
 Basic CNN architecture was created in order to establish a baseline. It consists of two Convolutional layers, first with 5x5 and the second with 3x3 filters. Each of these layers was followed by ReLU activation function and MaxPool. Two fully connected layers were added, the first one with ReLU activation and the second one with Linear for generating the output color. The model was trained with Adam optimizer and learning rate of 0.001. It resulted with MAE of 0.1284 and MSE of 0.0291 on the test dataset.
 
-<img src="https://github.com/user-attachments/assets/66568786-c07a-464a-91b9-7dc4448c048a" width=50%>\
-*Figure 13: Validation MAE of Basic CNN over time.*
+<img src="https://github.com/user-attachments/assets/66568786-c07a-464a-91b9-7dc4448c048a" width=40%>\
+*Figure 14: Validation MAE of Basic CNN over time.*
 
 ### 6.2 ResNet18
 ResNet18 architecture was modified so that it outputs a color instead of probabilities of classes. This time, sigmoid function is introduced in the output. The default weights for ResNet were used to ensure the most recent ResNet weight improvements are used and the layers up to the second residual block were frozen. The model resulted with MAE of 0.1233 and MSE of 0.0293 on the test set.
 
-<img src="https://github.com/user-attachments/assets/e3a90283-a51d-49e1-aa19-480dae66fa70" width=50%>\
-*Figure 14: Validation MAE of ResNet18 over time.*
+<img src="https://github.com/user-attachments/assets/e3a90283-a51d-49e1-aa19-480dae66fa70" width=40%>\
+*Figure 15: Validation MAE of ResNet18 over time.*
 
 ### 6.3 ResNet18 with one Squeeze-and-Excitation block
 A single Squeeze-and-Excitation block was added on top of the residual blocks of ResNet. SE layers improve feature discrimination without requiring a large dataset, which aligns well with this scenario. This modification resulted with MAE of 0.1067 and MSE of 0.0237 on the test dataset.
 
-<img src="https://github.com/user-attachments/assets/8309520a-7c2b-4cb3-8de8-2b6031e87d98" width=50%>\
-*Figure 15: Validation MAE of ResNet18 with a single Squeeze-and-Excitation block over time.*
+<img src="https://github.com/user-attachments/assets/8309520a-7c2b-4cb3-8de8-2b6031e87d98" width=40%>\
+*Figure 16: Validation MAE of ResNet18 with a single Squeeze-and-Excitation block over time.*
 
 ### 6.4 Resnet18 with two Squeeze-and-Excitation blocks and dropout
 Another Squeeze-and-Excitation block was introducet to the previous modification. Two dropouts are added, one between SE blocks and one after the second SE block. It scored 0.1055 MAE and 0.0231 MSE on the test dataset.
 
-<img src="https://github.com/user-attachments/assets/4654fc86-1a85-4b88-8118-8dd658e31ac0" width=50%>\
-*Figure 16: Validation MAE of ResNet18 with two Squeeze-and-Excitation blocks and dropout over time.*
+<img src="https://github.com/user-attachments/assets/4654fc86-1a85-4b88-8118-8dd658e31ac0" width=40%>\
+*Figure 17: Validation MAE of ResNet18 with two Squeeze-and-Excitation blocks and dropout over time.*
 
 ### 6.5 Training the entire (unfrozen) Resnet18 with two Squeeze-and-Excitation blocks and dropout model with AdamW optimizer and learning rate reduction
 The previously mentioned model was further trained, but now with all layers unfrozen and with a lower learning rate and AdamW optimizer which uses weight decay. ReduceLrOnPlateu callback was used to lower the learning rate if the model is not getting better for three consecutive epochs. The final model resulted with 0.0990 MAE and 0.0193 MSE on the test set. 
 
-<img src="https://github.com/user-attachments/assets/164d5bec-4830-4a27-96da-749a0e0e1c8a" width=50%>\
-*Figure 17: Validation MAE of the final trained model over time on the logarithmic scale.*
+<img src="https://github.com/user-attachments/assets/164d5bec-4830-4a27-96da-749a0e0e1c8a" width=60%>\
+*Figure 18: Validation MAE of the final trained model over time on the logarithmic scale.*
+
+### 6.6 Final comparison
+
+| Model                                          | MAE    | MSE    |
+|------------------------------------------------|--------|--------|
+| Basic CNN                                      | 0.1284 | 0.0291 |
+| ResNet18                                       | 0.1233 | 0.0293 |
+| ResNet18 + 1 SE Block                          | 0.1067 | 0.0237 |
+| ResNet18 + 2 SE Blocks + Dropout               | 0.1055 | 0.0231 |
+| ResNet18 + 2 SE Blocks + Dropout Unfrozen      | 0.0990 | 0.0193 |
+*Table 1: A summary of the results across all experiments.*
+
 
 ## 7. Error Analysis
 All images test predictions were plotted against the true labels and the following two distinctive cases when the model was wrong were noticed:
@@ -134,17 +148,22 @@ All images test predictions were plotted against the true labels and the followi
 ### 1) Errors on images containing multiple prominent colors
 The most common issue appears to occur with images containing multiple distinguishable colors, where the model tends to predict a dominant color that resembles a mix of the most prominent colors in the image. The model will most likely benefit from more data of images like this.
 
-<img src="https://github.com/user-attachments/assets/f850f579-9c2f-4f7b-b081-1b07bded829e" width=50%>\
-*Figure 18: Example of an error on an image containing multiple prominent colors.*
+<img src="https://github.com/user-attachments/assets/f850f579-9c2f-4f7b-b081-1b07bded829e" width=40%>\
+*Figure 19: Example of an error on an image containing multiple prominent colors.*
 
 ### 2) Errors on images containing two dominant colors
 The model sometimes predicts the other dominant color as the dominant color. This usually happens when there are two colors that seem dominant. These predictions don't seem neccesarily wrong, since there can be multiple colors that could be labeled as the correct dominant color.
 
-<img src="https://github.com/user-attachments/assets/8d2c76d6-6cd8-4baa-81b0-eaec24a89f59" width=50%>\
-*Figure 19: Example of an error on an image conatining two dominant colors.*
+<img src="https://github.com/user-attachments/assets/8d2c76d6-6cd8-4baa-81b0-eaec24a89f59" width=40%>\
+*Figure 20: Example of an error on an image conatining two dominant colors.*
 
 ## 8. Conclusions
+The following key conclusions were drawn:
 
+* Adding SE blocks enhanced the model's ability to focus on important spatial and channel information, leading to a noticeable improvement in MAE and MSE. This suggests that channel-wise attention mechanisms are effective for tasks involving global features like dominant color detection.
+* Introducing dropout helped reduce overfitting, particularly in the model with two SE blocks. This regularization technique ensured better generalization and further reduced errors.
+* While more complex architectures performed better, the improvements might have been constrained by the dataset size. This emphasizes the need for a balance between architecture complexity and available data, potentially justifying the success of techniques like pre-trained weights and attention mechanisms.
+* Challenges remain with multiple prominent color images, suggesting avenues for future research. Expanding the dataset to include more of these cases would most likely significantly improve model performance.
 
 ## 🏆 Acknowledgements
 1. [House Plant Species dataset on Kaggle](https://www.kaggle.com/datasets/kacpergregorowicz/house-plant-species/data)
