@@ -111,29 +111,40 @@ ResNet18 architecture was modified so that it outputs a color instead of probabi
 *Figure 14: Validation MAE of ResNet18 over time.*
 
 ### 6.3 ResNet18 with one Squeeze-and-Excitation block
-This modification resulted with MAE of 0.1067 and MSE of 0.0237 on the test dataset.
+A single Squeeze-and-Excitation block was added on top of the residual blocks of ResNet. SE layers improve feature discrimination without requiring a large dataset, which aligns well with this scenario. This modification resulted with MAE of 0.1067 and MSE of 0.0237 on the test dataset.
 
 <img src="https://github.com/user-attachments/assets/8309520a-7c2b-4cb3-8de8-2b6031e87d98" width=50%>\
 *Figure 15: Validation MAE of ResNet18 with a single Squeeze-and-Excitation block over time.*
 
 ### 6.4 Resnet18 with two Squeeze-and-Excitation blocks and dropout
+Another Squeeze-and-Excitation block was introducet to the previous modification. Two dropouts are added, one between SE blocks and one after the second SE block. It scored 0.1055 MAE and 0.0231 MSE on the test dataset.
 
 <img src="https://github.com/user-attachments/assets/4654fc86-1a85-4b88-8118-8dd658e31ac0" width=50%>\
 *Figure 16: Validation MAE of ResNet18 with two Squeeze-and-Excitation blocks and dropout over time.*
 
 ### 6.5 Training the entire (unfrozen) Resnet18 with two Squeeze-and-Excitation blocks and dropout model with AdamW optimizer and learning rate reduction
+The previously mentioned model was further trained, but now with all layers unfrozen and with a lower learning rate and AdamW optimizer which uses weight decay. ReduceLrOnPlateu callback was used to lower the learning rate if the model is not getting better for three consecutive epochs. The final model resulted with 0.0990 MAE and 0.0193 MSE on the test set. 
 
 <img src="https://github.com/user-attachments/assets/164d5bec-4830-4a27-96da-749a0e0e1c8a" width=50%>\
 *Figure 17: Validation MAE of the final trained model over time on the logarithmic scale.*
 
 ## 7. Error Analysis
+All images test predictions were plotted against the true labels and the following two distinctive cases when the model was wrong were noticed:
+
+### 1) Errors on images containing multiple prominent colors
+The most common issue appears to occur with images containing multiple distinguishable colors, where the model tends to predict a dominant color that resembles a mix of the most prominent colors in the image. The model will most likely benefit from more data of images like this.
+
 <img src="https://github.com/user-attachments/assets/f850f579-9c2f-4f7b-b081-1b07bded829e" width=50%>\
 *Figure 18: Example of an error on an image containing multiple prominent colors.*
+
+### 2) Errors on images containing two dominant colors
+The model sometimes predicts the other dominant color as the dominant color. This usually happens when there are two colors that seem dominant. These predictions don't seem neccesarily wrong, since there can be multiple colors that could be labeled as the correct dominant color.
 
 <img src="https://github.com/user-attachments/assets/8d2c76d6-6cd8-4baa-81b0-eaec24a89f59" width=50%>\
 *Figure 19: Example of an error on an image conatining two dominant colors.*
 
 ## 8. Conclusions
+
 
 ## 🏆 Acknowledgements
 1. [House Plant Species dataset on Kaggle](https://www.kaggle.com/datasets/kacpergregorowicz/house-plant-species/data)
