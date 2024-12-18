@@ -9,8 +9,9 @@ Knowing the dominant color of an image is often important for various problems s
 4. [Problem Solution](#4-problem-solution)
 5. [Model Architecture](#5-model-architecture)
 6. [Experiments](#6-experiments)
-7. [Conclusions](#7-conclusions)
-8. [Acknowledgements](#-acknowledgements)
+7. [Error Analysis](#7-error-analysis)
+8. [Conclusions](#8-conclusions)
+9. [Acknowledgements](#-acknowledgements)
 
 
 ## 1. Dataset information
@@ -98,28 +99,42 @@ The proposed solution to this problem is a convolutional neural network (CNN) tr
 
 ## 6. Experiments
 ### 6.1 Basic CNN
-Basic CNN architecture was created in order to establish a baseline. It consists of two Convolutional layers, first with 5x5 and the second with 3x3 filters. Each of these layers was followed by ReLU activation function and MaxPool. Two fully connected layers were added, the first one with ReLU activation and the second one with Linear for generating the output color. The model was trained with Adam optimizer and learning rate of 0.001. It resulted with MAE of 0.1387 and MSE of 0.0320 on the test dataset.
+Basic CNN architecture was created in order to establish a baseline. It consists of two Convolutional layers, first with 5x5 and the second with 3x3 filters. Each of these layers was followed by ReLU activation function and MaxPool. Two fully connected layers were added, the first one with ReLU activation and the second one with Linear for generating the output color. The model was trained with Adam optimizer and learning rate of 0.001. It resulted with MAE of 0.1284 and MSE of 0.0291 on the test dataset.
 
-<img src="https://github.com/user-attachments/assets/b0c1fab3-6eee-4931-a5f1-77c890ddd1c2" width=50%>\
+<img src="https://github.com/user-attachments/assets/66568786-c07a-464a-91b9-7dc4448c048a" width=50%>\
 *Figure 13: Validation MAE of Basic CNN over time.*
 
 ### 6.2 ResNet18
-ResNet18 architecture was modified so that it outputs a color instead of probabilities of classes. This time, sigmoid function is introduced in the output. The default weights for ResNet were used to ensure the most recent ResNet weight improvements are used and the layers up to the second residual block were frozen. The model resulted with MAE of 0.1262 and MSE of 0.0284 on the test set.
+ResNet18 architecture was modified so that it outputs a color instead of probabilities of classes. This time, sigmoid function is introduced in the output. The default weights for ResNet were used to ensure the most recent ResNet weight improvements are used and the layers up to the second residual block were frozen. The model resulted with MAE of 0.1233 and MSE of 0.0293 on the test set.
 
-<img src="https://github.com/user-attachments/assets/b1cee6ec-7991-4cc0-a7da-265f6206118b" width=50%>\
+<img src="https://github.com/user-attachments/assets/e3a90283-a51d-49e1-aa19-480dae66fa70" width=50%>\
 *Figure 14: Validation MAE of ResNet18 over time.*
 
-### 6.3 ResNet18 with additional layers
-A new Convolutional layer was added on top of the residual blocks of the ResNet. It has a 7x7 filter, padding of 3 and stride of 2 with the idea to look at the bigger part of the image and draw better conclusions about the dominant colors. Also, another fully connected layer was added and dropouts were introduced accordingly. This modification resulted with MAE of 0.1117 and MSE of 0.0249 on the test dataset.
-<img src="https://github.com/user-attachments/assets/c7d6428a-52eb-4234-8ac8-302fbe803f09" width=50%>\
-*Figure 15: Validation MAE of ResNet18 with additional layers over time.*
+### 6.3 ResNet18 with one Squeeze-and-Excitation block
+A new Convolutional layer was added on top of the residual blocks of the ResNet. It has a 7x7 filter, padding of 3 and stride of 2 with the idea to look at the bigger part of the image and draw better conclusions about the dominant colors. Also, another fully connected layer was added and dropouts were introduced accordingly. This modification resulted with MAE of 0.1067 and MSE of 0.0237 on the test dataset.
+
+<img src="https://github.com/user-attachments/assets/8309520a-7c2b-4cb3-8de8-2b6031e87d98" width=50%>\
+*Figure 15: ...*
 
 
-### 6.4 Resnet18 with more additional layers and weight decay
+### 6.4 Resnet18 with two Squeeze-and-Excitation blocks and Dropout
 
+<img src="https://github.com/user-attachments/assets/4654fc86-1a85-4b88-8118-8dd658e31ac0" width=50%>\
+*Figure 16: ...*
 
-## 7. Conclusions
+### 6.5 Training the entire 6.4 model with AdamW and learning rate reduction
 
+<img src="https://github.com/user-attachments/assets/67d1efbe-7924-4567-883d-c421d0e18e1d" width=50%>\
+*Figure 17: Validation MAE of the final trained model over time.*
+
+## 7. Error Analysis
+<img src="https://github.com/user-attachments/assets/f850f579-9c2f-4f7b-b081-1b07bded829e" width=50%>\
+*Figure 18: ...*
+
+<img src="https://github.com/user-attachments/assets/8d2c76d6-6cd8-4baa-81b0-eaec24a89f59" width=50%>\
+*Figure 19: ...*
+
+## 8. Conclusions
 
 ## 🏆 Acknowledgements
 1. [House Plant Species dataset on Kaggle](https://www.kaggle.com/datasets/kacpergregorowicz/house-plant-species/data)
