@@ -140,7 +140,8 @@ The previously mentioned model was further trained, but now with all layers unfr
 | ResNet18 + 1 SE Block                          | 0.1067 | 0.0237 |
 | ResNet18 + 2 SE Blocks + Dropout               | 0.1055 | 0.0231 |
 | ResNet18 + 2 SE Blocks + Dropout Unfrozen      | 0.0990 | 0.0193 |
-*Table 1: A summary of the results across all experiments.*
+
+*Table 1: Summary of the results across all experiments.*
 
 
 ## 7. Error Analysis
