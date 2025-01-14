@@ -167,7 +167,7 @@ The following key conclusions were drawn:
 * While more complex architectures performed better, the improvements might have been constrained by the dataset size. This emphasizes the need for a balance between architecture complexity and available data, potentially justifying the success of techniques like pre-trained weights and attention mechanisms.
 * Challenges remain with multiple prominent color images, suggesting avenues for future research. Expanding the dataset to include more of these cases would most likely significantly improve model performance.
 
-## 🏆 Acknowledgements
+## 📖 Resources
 1. [House Plant Species dataset on Kaggle](https://www.kaggle.com/datasets/kacpergregorowicz/house-plant-species/data)
 2. [Measuring colourfulness in natural images by David Hasler and Sabine Süsstrunk](https://infoscience.epfl.ch/server/api/core/bitstreams/77f5adab-e825-4995-92db-c9ff4cd8bf5a/content)
 3. [Computing image “colorfulness” with OpenCV and Python by Adrian Rosebrock](https://pyimagesearch.com/2017/06/05/computing-image-colorfulness-with-opencv-and-python/)
