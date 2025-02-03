@@ -11,7 +11,7 @@ Knowing the dominant color of an image is often important for various problems s
 6. [Experiments](#6-experiments)
 7. [Error Analysis](#7-error-analysis)
 8. [Conclusions](#8-conclusions)
-9. [Acknowledgements](#-acknowledgements)
+9. [Resources](#-resources)
 
 
 ## 1. Dataset information
